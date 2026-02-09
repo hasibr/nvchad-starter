@@ -1,11 +1,12 @@
 return {
+  -- Conform.nvim — auto-formatting engine, configured in configs/conform.lua
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
+    event = "BufWritePre", -- format on save
     opts = require "configs.conform",
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
+  -- nvim-lspconfig — enables LSP servers for code intelligence (diagnostics, go-to-def, etc.)
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -13,16 +14,34 @@ return {
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  -- nvim-treesitter — provides syntax highlighting, code folding, and text objects
+  -- via incremental parsing for all configured languages
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        -- Editor / config
+        "vim", "lua", "vimdoc",
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+        -- JVM languages
+        "java", "kotlin",
+
+        -- Systems / compiled
+        "go", "c_sharp",
+
+        -- Web
+        "typescript", "javascript", "tsx", "jsdoc",
+        "html", "css",
+
+        -- Data / config formats
+        "json", "yaml", "toml", "sql", "regex",
+
+        -- Scripting / docs
+        "bash", "python", "markdown", "markdown_inline",
+
+        -- DevOps / misc
+        "dockerfile", "gitignore", "hcl", "terraform",
+      },
+    },
+  },
 }
